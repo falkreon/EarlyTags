@@ -1,0 +1,70 @@
+plugins {
+	id "maven-publish"
+	id "fabric-loom" version "1.9-SNAPSHOT"
+	id "signing"
+}
+
+
+base {
+	archivesName = project.archives_base_name
+}
+
+version = "${project.version}+${project.minecraft_version}"
+group = project.maven_group
+
+repositories {
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+}
+
+
+processResources {
+	inputs.property 'version', version
+
+	filesMatching('fabric.mod.json') {
+		expand "version": version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.encoding = "UTF-8"
+	it.options.release = 21
+}
+
+java {
+	// Still required by IDEs such as Eclipse and Visual Studio Code
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+	
+	withSourcesJar()
+}
+
+// If you plan to use a different file for the license, don't forget to change the file name here!
+jar {
+	from("LICENSE") {
+		rename { "${it}_${archivesBaseName}" }
+	}
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+	
+	repositories {
+	}
+}
+
+signing {
+	if (project.hasProperty("signing.keyId")) {
+		sign configurations.archives;
+		sign publishing.publications.mavenJava
+	}
+}

@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "earlytags",
+	"version": "${version}",
+	"name": "Early Tags",
+	"description": "Inspect tags and other data WAY before it should be available.",
+	"authors": [
+		"Falkreon"
+	],
+	"contact": {
+		"homepage": "https://github.com/falkreon/EarlyTags",
+		"issues": "https://github.com/falkreon/EarlyTags/issues",
+		"sources": "https://github.com/falkreon/EarlyTags"
+	},
+	"license": "MIT",
+	"icon": "assets/earlytags/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"blue.endless.earlytags.EarlyTags"
+		]
+	},
+	"mixins": [],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"badges": [ "library" ]
+		}
+	}
+}
