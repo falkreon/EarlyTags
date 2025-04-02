@@ -16,9 +16,6 @@
 	"icon": "assets/earlytags/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"blue.endless.earlytags.EarlyTags"
-		]
 	},
 	"mixins": [],
 	"depends": {

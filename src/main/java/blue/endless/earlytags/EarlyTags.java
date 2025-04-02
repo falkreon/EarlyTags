@@ -4,18 +4,7 @@ import blue.endless.earlytags.impl.DataInspector;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 
-public class EarlyTags implements ModInitializer{
-	
-	
-	@Override
-	public void onInitialize() {
-		EarlyTag woolTag = get("block", Identifier.of("minecraft", "wool"));
-		System.out.println(woolTag);
-		System.out.println("contains lime wool? "+woolTag.contains(Identifier.of("minecraft", "lime_wool")));
-		
-		EarlyTag buttonsTag = get("block", Identifier.of("minecraft", "buttons"));
-		System.out.println(buttonsTag);
-	}
+public class EarlyTags {
 	
 	public static EarlyTag get(String category, Identifier tagId) {
 		return DataInspector.get(category, tagId);
